@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+
 {% block title %} | User Dashboard {% endblock %}
 
 
@@ -46,15 +47,110 @@
       <div class="row">
         <div class="col-md-12">
           <ul class="nav nav-tabs">
-          <li class="active"><a data-toggle="tab" href="#home"> Home</a></li>
-          <li><a data-toggle="tab" href="#about"> About</a></li>
-          <li><a data-toggle="tab" href="#contact"> Contact</a></li>
-          <li><a data-toggle="tab" href="#help"> Help</a></li>
+          <li class="active"><a data-toggle="tab" href="#new"><h5>New</h5></a></li>
+          <li><a data-toggle="tab" href="#submitted"> <h5>Submitted</h5></a></li>
+          <li><a data-toggle="tab" href="#published"> <h5>published</h5></a></li>
           </ul>
-          <div class="tab-content" ><div id="home" class="tab-pane fade in active"><h3>Home</h3><p>uyykiyi</p></div>
-          <div id="about" class="tab-pane fade "><h3>About</h3><p>aaaaaa</p></div>
-          <div id="contact" class="tab-pane fade "><h3>Contact</h3><p>sssssss</p></div>
-          <div id="help" class="tab-pane fade "><h3>Help</h3><p>hhhhhh</p></div></div>
+          <div class="tab-content" >
+            <div id="new" class="tab-pane fade in active">
+              
+           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#startupModal">
+            Add new Startups
+          </button>
+            
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#jobModal">
+            Add new jobs
+          </button>
+
+
+            </div>
+          <div id="submitted" class="tab-pane fade ">
+            
+
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Sr.</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@mdo</td>
+                <td>@twitter</td>
+              </tr>
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+          </div>
+          <div id="published" class="tab-pane fade ">
+
+
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Sr.</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                
+              </tr>
+            </tbody>
+          </table>
+
+
+
+
+          </div>
+          
+          
+
+        </div>
 
 
 
@@ -68,5 +164,182 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   </section>
+<!-- startup modal -->
+      <div class="modal fade" id="startupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Add new Startup</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+
+                  <form action="{% url 'register' %}" method="POST">
+                    {% csrf_token %}
+                  <div class="form-group">
+                  <label for="first_name">Product Name</label>
+                  <input type="text" name="first_name" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="last_name">Description</label><br>
+                  <textarea rows="5"  class="form-control"></textarea>
+                  
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Product Image:</label>
+                  <input type="file" name="Image" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="prices">Prices</label>
+                  <input type="number" name="price" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="facebook">Facebook</label>
+                  <input type="text" name="facebook" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="twitter">Twitter</label>
+                  <input type="text" name="twitter" class="form-control" required>
+                </div>
+                
+
+                <div class="form-group">
+                  <label for="sponsered">is_sponsered</label>
+                  <input type="checkbox" name="sponsered">
+                </div>
+              </form>
+
+                  
+   
+          
+              
+                  
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+
+<!-- end startup modal -->
+
+
+
+<!-- start job modal -->
+
+
+  <div class="modal fade" id="jobModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Add new job</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+
+                  <form action="{% url 'register' %}" method="POST">
+                    {% csrf_token %}
+                  <div class="form-group">
+                  <label for="first_name">Job title</label>
+                  <input type="text" name="first_name" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="last_name">Description</label><br>
+                  <textarea rows="5"  class="form-control"></textarea>
+                  
+                </div>
+
+                <div class="form-group">
+                  <label for="exp">Experience Req(yrs):</label>
+                  <input type="number" name="exp" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="company_name">Company name</label>
+                  <input type="cname" name="text" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="job_type">Job type</label>
+
+                  <select required="required" class="form-control">
+                    <option value="#" disabled="disabled">Select the job type</option>
+                    <option value="remote">
+                      Remote
+                    </option>
+                    <option value="physical">
+                      Physical
+                    </option>
+                  </select>
+
+                </div>
+                
+                <div class="form-group">
+                  <label for="destination">Destination</label>
+                  <input type="text" name="destination" class="form-control" required>
+                </div>
+                
+
+                <div class="form-group">
+                  <label for="job_link">Job link</label>
+                  <input type="text" name="job_link" class="form-control">
+                </div>
+              </form>
+
+                  
+   
+          
+              
+                  
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+<!-- end job modal -->
 {% endblock %}
+
+
+
+
+
+
