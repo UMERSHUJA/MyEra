@@ -51,6 +51,14 @@ def login(request):
     else:
         return render(request, 'profile/login.html')
 
+
 def dashboard(request):
     return render(request, 'profile/dashboard.html')
+
+
+def logout(request):
+    if request.method == 'POST':
+        auth.logout(request)
+        messages.success(request, 'You are now logged out')
+        return redirect('index')
     

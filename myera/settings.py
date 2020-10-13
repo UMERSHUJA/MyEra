@@ -34,6 +34,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'listings.apps.ListingsConfig',
+    'startup.apps.StartupConfig',
+    'joblist.apps.JoblistConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

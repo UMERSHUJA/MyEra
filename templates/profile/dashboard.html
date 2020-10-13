@@ -213,27 +213,27 @@
                 </div>
                 <div class="modal-body">
 
-                  <form action="{% url 'register' %}" method="POST">
+                  <form action="{% url 'startup' %}" method="POST">
                     {% csrf_token %}
                   <div class="form-group">
-                  <label for="first_name">Product Name</label>
-                  <input type="text" name="first_name" class="form-control" required>
+                  <label for="product_name">Product Name</label>
+                  <input type="text" name="product_name" class="form-control" required>
                 </div>
 
                 <div class="form-group">
-                  <label for="last_name">Description</label><br>
-                  <textarea rows="5"  class="form-control"></textarea>
+                  <label for="description">Description</label><br>
+                  <textarea rows="5"  class="form-control" name="description"></textarea>
                   
                 </div>
 
                 <div class="form-group">
-                  <label for="email">Product Image:</label>
-                  <input type="file" name="Image" class="form-control" required>
+                  <label for="image">Product Image:</label>
+                  <input type="file" name="image" class="form-control" required>
                 </div>
 
                 <div class="form-group">
-                  <label for="prices">Prices</label>
-                  <input type="number" name="price" class="form-control" required>
+                  <label for="price">Prices</label>
+                  <input type="number" name="price" min="0" class="form-control" required>
                 </div>
                 
                 <div class="form-group">
@@ -251,17 +251,17 @@
                   <label for="sponsered">is_sponsered</label>
                   <input type="checkbox" name="sponsered">
                 </div>
+              
+                <div class="form-group">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+
+
               </form>
 
                   
-   
-          
-              
                   
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
                 
               </div>
@@ -286,33 +286,39 @@
                 </div>
                 <div class="modal-body">
 
-                  <form action="{% url 'register' %}" method="POST">
+                  <form action="{% url 'joblist' %}" method="POST">
                     {% csrf_token %}
                   <div class="form-group">
-                  <label for="first_name">Job title</label>
-                  <input type="text" name="first_name" class="form-control" required>
+                  <label for="job_title">Job title</label>
+                  <input type="text" name="job_title" class="form-control" required>
                 </div>
 
                 <div class="form-group">
-                  <label for="last_name">Description</label><br>
-                  <textarea rows="5"  class="form-control"></textarea>
+                  <label for="destination">Description</label><br>
+                  <textarea rows="5" name="description" class="form-control"></textarea>
                   
                 </div>
 
                 <div class="form-group">
                   <label for="exp">Experience Req(yrs):</label>
-                  <input type="number" name="exp" class="form-control" required>
+                  <input type="number" name="experience" class="form-control" required>
                 </div>
 
                 <div class="form-group">
                   <label for="company_name">Company name</label>
-                  <input type="cname" name="text" class="form-control" required>
+                  <input type="text" name="company_name" class="form-control" required>
                 </div>
+
+                <div class="form-group">
+                  <label for="image">Image</label>
+                  <input type="file" name="image" class="form-control" required>
+                </div>
+                
                 
                 <div class="form-group">
                   <label for="job_type">Job type</label>
 
-                  <select required="required" class="form-control">
+                  <select required="required" name="job_type" class="form-control">
                     <option value="#" disabled="disabled">Select the job type</option>
                     <option value="remote">
                       Remote
@@ -332,8 +338,16 @@
 
                 <div class="form-group">
                   <label for="job_link">Job link</label>
-                  <input type="text" name="job_link" class="form-control">
+                  <input type="url" name="job_link" class="form-control">
                 </div>
+
+
+                <div class="form-group">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+
+
               </form>
 
                   
@@ -341,10 +355,6 @@
           
               
                   
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
                 
               </div>

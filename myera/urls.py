@@ -8,7 +8,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('listings.urls')),
-    
+    path('joblist/', include('joblist.urls')),
+    path('startup/', include('startup.urls')),    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
