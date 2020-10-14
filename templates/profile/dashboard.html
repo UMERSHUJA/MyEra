@@ -86,9 +86,37 @@
 
             </div>
           <div id="submitted" class="tab-pane fade ">
+
             
 
-          <table class="table table-striped">
+         
+
+      <ul class="nav nav-tabs">
+
+
+          <li class="active" style="padding: 25px;">
+            <a data-toggle="tab" href="#requested_startup">
+              <h6>Requested Startup</h6>
+            </a>
+          </li>
+          
+          
+          <li style="padding: 25px;">
+            <a data-toggle="tab" href="#requested_joblist"> 
+              <h6>Requested Joblist</h6>
+            </a>
+          </li>
+
+
+          </ul>
+
+          <!-- inner Tabs content -->
+
+
+  <div class="tab-content">
+    <div id="requested_startup" class="tab-pane fade in">
+        
+         <table class="table table-striped">
             <thead>
               <tr>
                 <th scope="col">Sr.</th>
@@ -114,9 +142,44 @@
             </tbody>
           </table>
 
+      
+    </div>
+    <div id="requested_joblist" class="tab-pane fade">
+      
+       <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Sr.</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% if 'joblists' %}
+                {% for joblist in joblists %}
+                  <tr>
+                    <td>{{joblist.id}}</td>
+                    <td>{{joblist.job_title}}</td>
+                    <td>{{joblist.description}}</td>
+                    <td>Edit</td>
+                    <td>Delete</td>
+                  </tr>
+                {% endfor %}
+              
+              {% endif %}
+            </tbody>
+          </table>
+
+
+    </div>
+    
+  </div>
 
 
 
+          <!-- ends inner tabs -->
 
 
 
@@ -126,25 +189,81 @@
           <div id="published" class="tab-pane fade ">
 
 
+            <ul class="nav nav-tabs">
+
+
+          <li class="active" style="padding: 25px;">
+            <a data-toggle="tab" href="#published_startup">
+              <h6>Published Startup</h6>
+            </a>
+          </li>
+          
+          
+          <li style="padding: 25px;">
+            <a data-toggle="tab" href="#published_joblist"> 
+              <h6>Published Joblist</h6>
+            </a>
+          </li>
+
+
+          </ul>
+
+          <!-- inner Tabs content -->
+
+
+  <div class="tab-content">
+    <div id="published_startup" class="tab-pane fade in">
+  
+
           <table class="table table-striped">
             <thead>
               <tr>
                 <th scope="col">Sr.</th>
                 <th scope="col">Name</th>
                 <th scope="col">Description</th>
-                <th>Edit</th>
-                <th>Delete</th>
+                
               </tr>
             </thead>
             <tbody>
-              {% if 'published' %}
-                {% for publish in published %}
+              {% if 'startup_published' %}
+                {% for start_pub in startup_published %}
                   <tr>
-                    <td>{{publish.id}}</td>      
-                    <td>{{publish.product_name}}</td>
-                    <td>{{publish.description}}</td>
-                    <td>Edit</td>
-                    <td>Delete</td>
+                    <td>{{start_pub.id}}</td>      
+                    <td>{{start_pub.product_name}}</td>
+                    <td>{{start_pub.description}}</td>
+                  </tr>
+                {% endfor %}
+              
+              {% endif %}
+
+              
+
+
+            </tbody>
+          </table>     
+  
+    </div>
+
+    <div id="published_joblist" class="tab-pane fade">
+      
+       
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Sr.</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              {% if 'joblist_published' %}
+                {% for job_pub in joblist_published %}
+                  <tr>
+                    <td>{{job_pub.id}}</td>      
+                    <td>{{job_pub.job_title}}</td>
+                    <td>{{job_pub.description}}</td>
+                    
                   </tr>
                 {% endfor %}
               
@@ -155,6 +274,21 @@
 
             </tbody>
           </table>
+
+
+
+
+
+
+    </div>
+    
+  </div>
+
+
+
+          <!-- ends inner tabs -->
+
+
 
 
 
@@ -307,7 +441,7 @@
 
                 <div class="form-group">
                   <label for="exp">Experience Req(yrs):</label>
-                  <input type="number" name="experience" class="form-control" required>
+                  <input type="number" name="experience" min="0" class="form-control" required>
                 </div>
 
                 <div class="form-group">

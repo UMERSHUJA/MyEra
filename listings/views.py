@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
 from startup.models import Startup
-
+from joblist.models import JobList
 
 def index(request):
     return render(request, 'pages/index.html')
@@ -57,11 +57,15 @@ def login(request):
 def dashboard(request):
     if request.user.is_authenticated:
         startups = Startup.objects.order_by('submission_date').filter(published=False, user_id = request.user.id)
-        published = Startup.objects.order_by('submission_date').filter(published=True, user_id = request.user.id)
+        startup_published = Startup.objects.order_by('submission_date').filter(published=True, user_id = request.user.id)
+        joblists = JobList.objects.order_by('submission_date').filter(published=False, user_id = request.user.id)
+        joblist_published = JobList.objects.order_by('submission_date').filter(published=True, user_id = request.user.id)
         
         context = {
             'startups': startups,
-            'published': published
+            'startup_published': startup_published,
+            'joblists': joblists,
+            'joblist_published': joblist_published
         }
         return render(request, 'profile/dashboard.html', context)
     else:
