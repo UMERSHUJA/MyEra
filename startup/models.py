@@ -13,8 +13,8 @@ class Startup(models.Model):
     twitter = models.CharField(max_length=100)
     is_sponsered = models.BooleanField(default=False)
     submission_date = models.DateTimeField(default=datetime.now, blank=False)
-    published = models.BooleanField(default=False, blank=True)
-    
+    published = models.BooleanField(default=True)
+    user_id = models.IntegerField(default=0, blank=True)
 
     def __str__(self):
         return self.product_name

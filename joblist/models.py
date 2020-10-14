@@ -12,8 +12,8 @@ class JobList(models.Model):
     destination = models.CharField(max_length=100)
     job_link = models.CharField(max_length=100)
     submission_date = models.DateTimeField(default=datetime.now, blank=False)
-    published = models.BooleanField(default=False, blank=True)
-    
+    published = models.BooleanField(default=True)
+    user_id = models.IntegerField(default=0, blank=True)
     def __str__(self):
         return self.job_title
 

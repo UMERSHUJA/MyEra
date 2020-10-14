@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
+from startup.models import Startup
+
 
 def index(request):
     return render(request, 'pages/index.html')
@@ -53,7 +55,14 @@ def login(request):
 
 
 def dashboard(request):
-    return render(request, 'profile/dashboard.html')
+    startups = Startup.objects.order_by('submission_date').filter(published=False)
+    published = Startup.objects.order_by('submission_date').filter(published=True)
+    
+    context = {
+        'startups': startups,
+        'published': published
+    }
+    return render(request, 'profile/dashboard.html', context)
 
 
 def logout(request):

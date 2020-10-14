@@ -91,7 +91,7 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th scope="col">Sr.</th>
+                
                 <th scope="col">Name</th>
                 <th scope="col">Description</th>
                 <th scope="col">Edit</th>
@@ -99,27 +99,18 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@mdo</td>
-                <td>@twitter</td>
-              </tr>
+              {% if 'startups' %}
+                {% for startup in startups %}
+                  <tr>
+                    <td>{{startup.id}}</td>
+                    <td>{{startup.product_name}}</td>
+                    <td>{{startup.description}}</td>
+                    <td>Edit</td>
+                    <td>Delete</td>
+                  </tr>
+                {% endfor %}
+              
+              {% endif %}
             </tbody>
           </table>
 
@@ -141,26 +132,27 @@
                 <th scope="col">Sr.</th>
                 <th scope="col">Name</th>
                 <th scope="col">Description</th>
+                <th>Edit</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                
-              </tr>
+              {% if 'published' %}
+                {% for publish in published %}
+                  <tr>
+                    <td>{{publish.id}}</td>      
+                    <td>{{publish.product_name}}</td>
+                    <td>{{publish.description}}</td>
+                    <td>Edit</td>
+                    <td>Delete</td>
+                  </tr>
+                {% endfor %}
+              
+              {% endif %}
+
+              
+
+
             </tbody>
           </table>
 
@@ -215,10 +207,18 @@
 
                   <form action="{% url 'startup' %}" method="POST">
                     {% csrf_token %}
+
+                    {% if user.is_authenticated %}
+                      <input type="hidden" name="user_id" value="{{user.id}}">
+                    {% else %}
+                      <input type="hidden" name="user_id" value="0">
+                    {% endif %}
+
+
                   <div class="form-group">
-                  <label for="product_name">Product Name</label>
-                  <input type="text" name="product_name" class="form-control" required>
-                </div>
+                    <label for="product_name">Product Name</label>
+                    <input type="text" name="product_name" class="form-control" required>
+                  </div>
 
                 <div class="form-group">
                   <label for="description">Description</label><br>
@@ -288,6 +288,12 @@
 
                   <form action="{% url 'joblist' %}" method="POST">
                     {% csrf_token %}
+
+                    {% if user.is_authenticated %}
+                      <input type="hidden" name="user_id" value="{{user.id}}">
+                    {% else %}
+                      <input type="hidden" name="user_id" value="0">
+                    {% endif %}
                   <div class="form-group">
                   <label for="job_title">Job title</label>
                   <input type="text" name="job_title" class="form-control" required>

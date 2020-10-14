@@ -6,9 +6,11 @@ from django.contrib import messages
 
 def startup(request):
     if request.method == "POST":
+
         product_name = request.POST['product_name']
         description = request.POST['description']
         image = request.POST['image']
+        user_id = request.POST['user_id']
         price = request.POST['price']
         facebook = request.POST['facebook']
         twitter = request.POST['twitter']
@@ -17,7 +19,7 @@ def startup(request):
         else:
             sponsered = False
 
-        startup = Startup(product_name=product_name, description=description, image=image, prices=price, facebook=facebook, twitter=twitter, is_sponsered=sponsered)
+        startup = Startup(product_name=product_name, description=description, image=image, prices=price, facebook=facebook, twitter=twitter, is_sponsered=sponsered, user_id=user_id)
         
         startup.save()
 
