@@ -11,9 +11,9 @@ class Startup(models.Model):
     prices = models.CharField(max_length=200)
     facebook = models.CharField(max_length=100)
     twitter = models.CharField(max_length=100)
-    is_sponsered = models.BooleanField(default=False)
+    is_sponsered = models.BooleanField(default=True)
     submission_date = models.DateTimeField(default=datetime.now, blank=False)
-    published = models.BooleanField(default=True)
+    published = models.BooleanField(default=False)
     user_id = models.IntegerField(default=0, blank=True)
 
     def __str__(self):

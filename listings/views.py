@@ -55,15 +55,17 @@ def login(request):
 
 
 def dashboard(request):
-    startups = Startup.objects.order_by('submission_date').filter(published=False)
-    published = Startup.objects.order_by('submission_date').filter(published=True)
-    
-    context = {
-        'startups': startups,
-        'published': published
-    }
-    return render(request, 'profile/dashboard.html', context)
-
+    if request.user.is_authenticated:
+        startups = Startup.objects.order_by('submission_date').filter(published=False, user_id = request.user.id)
+        published = Startup.objects.order_by('submission_date').filter(published=True, user_id = request.user.id)
+        
+        context = {
+            'startups': startups,
+            'published': published
+        }
+        return render(request, 'profile/dashboard.html', context)
+    else:
+        return redirect('login')
 
 def logout(request):
     if request.method == 'POST':

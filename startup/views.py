@@ -18,7 +18,7 @@ def startup(request):
             sponsered = True
         else:
             sponsered = False
-
+        
         startup = Startup(product_name=product_name, description=description, image=image, prices=price, facebook=facebook, twitter=twitter, is_sponsered=sponsered, user_id=user_id)
         
         startup.save()
