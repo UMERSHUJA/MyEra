@@ -12,7 +12,15 @@
     <link rel="stylesheet" href=" {% static 'css/style.css' %} ">
     <!-- LightBox -->
     <link rel="stylesheet" href=" {% static 'css/lightbox.min.css' %} ">
-    
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#editjobModal").modal('show');
+        });
+
+        $(document).ready(function(){
+            $("#editstartupModal").modal('show');
+        });
+    </script>
 
     <title>MyEra {% block title %} {% endblock %} </title>
 </head>

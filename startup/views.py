@@ -28,3 +28,6 @@ def startup(request):
         return redirect('dashboard')
 
 
+
+def editstartup(request):
+    return render(request, 'pages/editstartup.html')

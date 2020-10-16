@@ -133,8 +133,16 @@
                     <td>{{startup.id}}</td>
                     <td>{{startup.product_name}}</td>
                     <td>{{startup.description}}</td>
-                    <td>Edit</td>
-                    <td>Delete</td>
+                    <td>
+                      <form action="{% url 'editstartup' %}" method="GET">
+                        <button type="submit" class="btn-primary btn-sm">Edit</button>
+                      </form>
+                    </td>
+                    <td>
+                      <form action="">
+                    <button type="submit" class="btn-danger btn-sm">Delete</button>
+                    </form>
+                    </td>
                   </tr>
                 {% endfor %}
               
@@ -163,8 +171,16 @@
                     <td>{{joblist.id}}</td>
                     <td>{{joblist.job_title}}</td>
                     <td>{{joblist.description}}</td>
-                    <td>Edit</td>
-                    <td>Delete</td>
+                    <td>
+                      <form action="{% url 'editjob' joblist.id %}">
+                      <button type="submit" class="btn-primary btn-sm">Edit</button>
+                      </form>
+                    </td>
+                    <td>
+                      <form action="{% url 'deljob' joblist.id %}">
+                        <button type="submit" class="btn-danger btn-sm">Delete</button>
+                    </form>
+                  </td>
                   </tr>
                 {% endfor %}
               
@@ -507,6 +523,109 @@
 
 
 <!-- end job modal -->
+
+
+<!-- start editjob modal -->
+
+
+  <div class="modal fade" id="editjobModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Update your job</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+
+                  <form action="{% url 'joblist' %}" method="POST">
+                    {% csrf_token %}
+
+                  <div class="form-group">
+                  <label for="job_title">Job title</label>
+                  <input type="text" name="job_title" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="destination">Description</label><br>
+                  <textarea rows="5" name="description" class="form-control"></textarea>
+                  
+                </div>
+
+                <div class="form-group">
+                  <label for="exp">Experience Req(yrs):</label>
+                  <input type="number" name="experience" min="0" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="company_name">Company name</label>
+                  <input type="text" name="company_name" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="image">Image</label>
+                  <input type="file" name="image" class="form-control" required>
+                </div>
+                
+                
+                <div class="form-group">
+                  <label for="job_type">Job type</label>
+
+                  <select required="required" name="job_type" class="form-control">
+                    <option value="#" disabled="disabled">Select the job type</option>
+                    <option value="remote">
+                      Remote
+                    </option>
+                    <option value="physical">
+                      Physical
+                    </option>
+                  </select>
+
+                </div>
+                
+                <div class="form-group">
+                  <label for="destination">Destination</label>
+                  <input type="text" name="destination" class="form-control" required>
+                </div>
+                
+
+                <div class="form-group">
+                  <label for="job_link">Job link</label>
+                  <input type="url" name="job_link" class="form-control">
+                </div>
+
+
+                <div class="form-group">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+
+
+              </form>
+
+                  
+   
+          
+              
+                  
+                </div>
+                
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+<!-- end editjob modal -->
+
+
+
+
+
 {% endblock %}
 
 
