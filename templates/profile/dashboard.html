@@ -134,12 +134,12 @@
                     <td>{{startup.product_name}}</td>
                     <td>{{startup.description}}</td>
                     <td>
-                      <form action="{% url 'editstartup' %}" method="GET">
+                      <form action="{% url 'editstartup' startup.id %}" method="GET">
                         <button type="submit" class="btn-primary btn-sm">Edit</button>
                       </form>
                     </td>
                     <td>
-                      <form action="">
+                      <form action="{% url 'delstartup' startup.id %}">
                     <button type="submit" class="btn-danger btn-sm">Delete</button>
                     </form>
                     </td>
