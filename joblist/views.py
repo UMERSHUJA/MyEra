@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.core.mail import send_mail
 from .models import JobList
 
 
@@ -21,6 +22,16 @@ def joblist(request):
         joblist = JobList(job_title=job_title, description=description, icon=icon, company_name=company_name, experience=experience, job_type=job_type, destination=destination, job_link=job_link, user_id=user_id)
         joblist.save()
         
+        # Send mail
+        send_mail(
+            'Property Listing Inquiry',
+            'there has been an inquiry for ' + joblist + '. Sign into the admin panel for more info',
+            'umershuja12@gmail.com',
+            ['suirsan12@gmail.com'],
+            fail_silently=False
+        )
+
+
         messages.success(request, 'Your requested has been submitted, wait for the admin response')
         
         return redirect('dashboard')

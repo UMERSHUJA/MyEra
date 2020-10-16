@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Startup
 from django.contrib import messages
+from django.core.mail import send_mail
 
 
 
@@ -15,16 +16,18 @@ def startup(request):
         facebook = request.POST['facebook']
         twitter = request.POST['twitter']
         sponsered = 'sponsered' in request.POST
-        # sponsered = request.POST['sponsered']
-        # if request.POST['sponsered']:
-        #     sponsered = True
-        # else:
-        #     sponsered = False
         
         startup = Startup(product_name=product_name, description=description, image=image, prices=price, facebook=facebook, twitter=twitter, is_sponsered=sponsered, user_id=user_id)
         
         startup.save()
-
+        # Send mail
+        send_mail(
+            'Property Listing Inquiry',
+            'there has been an inquiry for ' + startup + '. Sign into the admin panel for more info',
+            'umershuja12@gmail.com',
+            ['suirsan12@gmail.com'],
+            fail_silently=False
+        )
         messages.success(request, 'Your requested has been submitted, wait for the admin response')
         
         return redirect('dashboard')
