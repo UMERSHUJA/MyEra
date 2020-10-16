@@ -5,7 +5,14 @@ from startup.models import Startup
 from joblist.models import JobList
 
 def index(request):
-    return render(request, 'pages/index.html')
+    startups = Startup.objects.order_by('submission_date').filter(published=True)
+    joblists = JobList.objects.order_by('submission_date').filter(published=True)
+    context = {
+        'startups': startups,
+        'joblists': joblists,
+    }
+
+    return render(request, 'pages/index.html', context)
 
 def register(request):
     if request.method == "POST":

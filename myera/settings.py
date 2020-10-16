@@ -143,4 +143,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 
+# Mail configurations
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = '74893578792920'
+EMAIL_HOST_PASSWORD = '4213807f717e6c'
+EMAIL_PORT = '2525'
+# EMAIL_USE_TLS = 'True'
+
+
+
 # django_heroku.settings(locals())
