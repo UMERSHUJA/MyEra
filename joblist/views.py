@@ -35,6 +35,25 @@ def editjob(request, joblist_id):
     return render(request, 'pages/editjob.html', context)
 
 
+def changeoccur(request, joblist_id):
+    if request.method == 'POST':
+        job = JobList.objects.get(pk = joblist_id)
+        job.job_title = request.POST['job_title']
+        job.description = request.POST['description']
+        job.icon = request.POST['image']
+        job.company_name = request.POST['company_name']
+        job.experience = request.POST['experience']
+        job.job_type = request.POST['job_type']
+        job.destination = request.POST['destination']
+        job.job_link = request.POST['job_link']
+
+        job.save()
+        messages.success(request, 'You job has been altered sucessfully!')
+        
+        return redirect('dashboard')
+
+
+
 def deljob(request, joblist_id):
     jobs = get_object_or_404(JobList, pk=joblist_id)
     jobs.delete()

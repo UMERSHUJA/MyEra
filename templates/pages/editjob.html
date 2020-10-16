@@ -21,7 +21,7 @@
                       <div class="card-body">
                     
 
-                  <form action="{% url 'joblist' %}" method="POST">
+                  <form action="{% url 'changeoccur' job.id %}" method="POST">
                     {% csrf_token %}
 
                   <div class="form-group">
