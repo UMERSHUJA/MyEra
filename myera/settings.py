@@ -27,7 +27,7 @@ SECRET_KEY = 'q-x0=2uzkd^ojvxou!0^ov%o82#d^ss6(j+wm0y5(a2!+*t9%n'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['725ddddb12e6.ngrok.io', 'localhost', '127.0.0.1', 'testserver']
 
 
 # Application definition
@@ -139,9 +139,25 @@ os.path.join(BASE_DIR, 'myera/static')
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # MEDIA Folder Settings
+
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+
+
+
+
+# STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), ) 
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# MEDIA_URL = '/media/' 
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+
+
+
 
 
 # Mail configurations

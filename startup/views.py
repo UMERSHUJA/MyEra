@@ -23,7 +23,7 @@ def startup(request):
         # Send mail
         send_mail(
             'Property Listing Inquiry',
-            'there has been an inquiry for ' + startup + '. Sign into the admin panel for more info',
+            'there has been an inquiry for ' + str(startup) + '. Sign into the admin panel for more info',
             'umershuja12@gmail.com',
             ['suirsan12@gmail.com'],
             fail_silently=False

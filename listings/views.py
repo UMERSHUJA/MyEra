@@ -5,11 +5,13 @@ from startup.models import Startup
 from joblist.models import JobList
 
 def index(request):
-    startups = Startup.objects.order_by('submission_date').filter(published=True)
+    startups = Startup.objects.order_by('submission_date').filter(published=True, is_sponsered=False)
+    trendings = Startup.objects.order_by('submission_date').filter(published=True, is_sponsered=True)
     joblists = JobList.objects.order_by('submission_date').filter(published=True)
     context = {
         'startups': startups,
         'joblists': joblists,
+        'trendings': trendings,
     }
 
     return render(request, 'pages/index.html', context)
