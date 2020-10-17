@@ -5,61 +5,88 @@
 
 {% block content %} 
 <div class="container">
+      
+      <div class="row mt-5">
+      <h2>Features</h2>
+
+      <div class="col-md-12">
+      
+      <ul style="list-style-type: none; margin: 0; padding: 0">
+      <li>
+            <a style="display: block; padding: 8px 16px; text-decoration: none;" href="#home">
+            Latest Startups
+            </a>
+      </li>
+      <li><a style="display: block; padding: 8px 16px; text-decoration: none;" href="#jobs">Latest Jobs</a></li>
+      </ul>
+      </div>
+      </div>
+      <hr>
       <div class="row">
-          
-        {% if startups %}
-          {% for startup in startups %}
-            <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card listing-preview">
-            <img class="card-img-top" src=" {{listing.photo_main.url}} " alt="main_image">
-            <div class="card-img-overlay">
-              <h2>
-                <span class="badge badge-secondary text-white">${{listing.price | intcomma}}</span>
-              </h2>
-            </div>
-            <div class="card-body">
-              <div class="listing-heading text-center">
-                <h4 class="text-primary">{{listing.title}}</h4>
-                <p>
-                  <i class="fas fa-map-marker text-secondary"></i> {{listing.city}} {{listing.state}} ,{{listing.zipcode}}</p>
-              </div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-th-large"></i> Sqft: {{listing.sqft}}</div>
-                <div class="col-6">
-                  <i class="fas fa-car"></i> Garage: {{listing.garage}}</div>
-              </div>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-bed"></i> Bedrooms: {{listing.bedrooms}}</div>
-                <div class="col-6">
-                  <i class="fas fa-bath"></i> Bathrooms: {{listing.bathrooms}}</div>
-              </div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-12">
-                  <i class="fas fa-user"></i> {{listing.realtor}}</div>
-              </div>
-              <div class="row text-secondary pb-2">
-                <div class="col-6">
-                  <i class="fas fa-clock"></i> {{ listing.list_date | timesince }}</div>
-              </div>
-              <hr>
-              <a href="" class="btn btn-primary btn-block">More Info</a>
-            </div>
-          </div>
-        </div>
-
-          {% endfor %}
-        {% else %}
-          <div class="col-md-12">
-            <p>No Listings Available</p>
-          </div>
-        {% endif %}
-
-
+      	<h2 class="">Latest Startups</h2>
       </div>
 
+      	<div class="row">
+
+      	{% if startups %}
+      		{% for startup in startups %}
+      		<div class="col-md-4 py-2">
+				<div class="card" style="width: 18rem;">
+				  <img class="card-img-top" src="{{startup.image.url}}" alt="{{startup.product_name}}">
+				  <div class="card-body">
+				    
+				    <hr><h5 class="card-title">{{startup.product_name}}</h5>
+				    <p class="card-text">{{startup.description}}</p>
+				    <hr>
+				    <a href="{% url 'listing' startup.id %}" class="btn btn-info">More Info</a>
+				  </div>
+				</div>
+			</div>
+
+      		{% endfor %}
+
+      	{% else %}
+      		<p>No listings available yet.</p>
+      	{% endif %}
+      </div>
+
+      <hr>
+
+      <div class="row">
+      	<h2 id="jobs" class="text-center">Latest Jobs</h2><br>
+      </div>
+      <div class="row">
+      
+      	{% if joblists %}
+      		{% for job in joblists %}
+      		<div class="col-md-12 py-2">
+	     <div class="card" style="width: 75%;">
+            <div class="row no-gutters">
+                <div class="col-sm-2">
+                    <img class="card-img" src="/images/defaultimg.png" alt="{{job.job_title}}">
+                </div>
+                <div class="col-sm-10">
+                    <div class="card-body">
+                        <h5 class="card-title">{{job.job_title}}</h5>
+                        <p class="card-text"> {{job.description}} </p>
+                        <hr>
+                        <a href="{% url 'joblisting' job.id %}" class="btn btn-info">View Job</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+			</div>
+
+      		{% endfor %}
+
+      	{% else %}
+      		<p>No listings available yet.</p>
+      	{% endif %}
+      </div>
+      
+
+
+
+</div>
 
 {% endblock %}

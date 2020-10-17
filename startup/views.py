@@ -33,6 +33,18 @@ def startup(request):
         return redirect('dashboard')
 
 
+
+
+def listing(request, id):
+    startup = Startup.objects.order_by('submission_date').filter(published=True, id = id)
+    context = {
+        'startup': startup,
+    }
+    
+    return render(request, 'pages/listing.html', context)
+
+
+
 def editstartup(request, startuplist_id):
     startups = Startup.objects.all().filter(id=startuplist_id)
             

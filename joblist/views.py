@@ -21,7 +21,7 @@ def joblist(request):
         
         joblist = JobList(job_title=job_title, description=description, icon=icon, company_name=company_name, experience=experience, job_type=job_type, destination=destination, job_link=job_link, user_id=user_id)
         joblist.save()
-        
+         
         # Send mail
         send_mail(
             'Property Listing Inquiry',
@@ -35,6 +35,16 @@ def joblist(request):
         messages.success(request, 'Your requested has been submitted, wait for the admin response')
         
         return redirect('dashboard')
+
+
+def listing(request, id):
+    job = JobList.objects.order_by('submission_date').filter(published=True, id = id)
+    context = {
+        'job': job,
+    }
+    
+    return render(request, 'pages/joblist.html', context)
+
 
 
 def editjob(request, joblist_id):

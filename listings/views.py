@@ -78,6 +78,51 @@ def dashboard(request):
     else:
         return redirect('login')
 
+
+def search(request):
+    startups = Startup.objects.order_by('-submission_date').filter(published=True)
+    joblists = JobList.objects.order_by('-submission_date').filter(published=True)
+    # startups
+    st = 0
+    jb = 0
+    if 'startup' in request.GET:
+        startup = request.GET['startup']
+        if startup:
+            st = st + 1
+            startups = Startup.objects.order_by('-submission_date').filter(product_name__icontains=startup)
+
+    # jobs
+    if 'job' in request.GET:
+        job = request.GET['job']
+        if job:
+            jb = jb + 1
+            joblists = JobList.objects.order_by('-submission_date').filter(job_title__icontains=job) 
+
+    context = {
+        'joblists': joblists,
+        'startups': startups,
+        }
+    if st>0:        
+        context = {
+            'startups': startups,
+        }
+
+    if jb>0:
+        context={
+            'joblists': joblists,
+        }
+
+    if st>0 and jb>0:
+        context= {
+            'joblists': joblists,
+            'startups': startups,
+        }
+
+
+    return render(request, 'pages/search.html', context)
+
+
+
 def logout(request):
     if request.method == 'POST':
         auth.logout(request)
