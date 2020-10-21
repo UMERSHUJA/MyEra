@@ -9,7 +9,11 @@ urlpatterns = [
     path('', include('listings.urls')),
     path('joblist/', include('joblist.urls')),
     path('startup/', include('startup.urls')),    
-]
+    path('profile/', include('profiles.urls')),
 
-if settings.DEBUG:
-     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    # rest framework path
+    path('api/startup/', include('startup.api.urls', 'startup_api')),
+
+
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
